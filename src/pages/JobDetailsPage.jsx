@@ -190,32 +190,38 @@ function JobDetailsPage() {
           {/* Other Job Openings */}
           {relatedJobs.length > 0 && (
             <div className="mb-4">
-              <h5 className="mb-3">
-                <span style={{borderBottom: '3px solid #007bff', paddingBottom: '5px'}}>
-                  OTHER JOB OPENINGS
-                </span>
-              </h5>
-              
-              <div className="list-group list-group-flush">
-                {relatedJobs.map((relatedJob) => (
-                  <Link 
-                    key={relatedJob.id} 
-                    to={`/jobs/${relatedJob.id}`}
-                    className="list-group-item list-group-item-action border-0 px-0 py-3"
-                  >
-                    <div className="d-flex justify-content-between align-items-start">
-                      <div className="flex-grow-1">
-                        <h6 className="mb-1 fw-bold">{relatedJob.title}</h6>
-                        <div className="d-flex align-items-center text-muted small">
-                          <i className="fas fa-building me-1"></i>
-                          <span className="me-3">{relatedJob.department?.title || 'General'}</span>
-                          <i className="fas fa-map-marker-alt me-1"></i>
-                          <span>{relatedJob.location?.city}</span>
-                        </div>
-                      </div>
+              <div className="card border-0" style={{backgroundColor: '#f8f9fa'}}>
+                <div className="card-body p-4">
+                  <h5 className="mb-3 fw-bold">
+                    <span style={{borderBottom: '3px solid #007bff', paddingBottom: '5px'}}>
+                      OTHER JOB OPENINGS
+                    </span>
+                  </h5>
+                  
+                  <div className="test">
+                    <div className="list-group list-group-flush">
+                      {relatedJobs.map((relatedJob) => (
+                        <Link 
+                          key={relatedJob.id} 
+                          to={`/jobs/${relatedJob.id}`}
+                          className="list-group-item list-group-item-action border-0 px-0 py-3 bg-transparent text-decoration-none"
+                        >
+                          <div className="d-flex justify-content-between align-items-start">
+                            <div className="flex-grow-1">
+                              <h6 className="mb-2 fw-bold text-dark">{relatedJob.title}</h6>
+                              <div className="d-flex align-items-center text-muted small">
+                                <i className="fas fa-building me-2 text-secondary"></i>
+                                <span className="me-3">{relatedJob.department?.title || 'General'}</span>
+                                <i className="fas fa-map-marker-alt me-2 text-secondary"></i>
+                                <span>{relatedJob.location?.city}, {relatedJob.location?.state}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
                     </div>
-                  </Link>
-                ))}
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -228,35 +234,39 @@ function JobDetailsPage() {
               </span>
             </h5>
             
-            <div className="d-flex gap-3">
-              <a 
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(job.hostedUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-secondary rounded-circle p-3"
-                style={{width: '50px', height: '50px'}}
-              >
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a 
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(job.hostedUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-secondary rounded-circle p-3"
-                style={{width: '50px', height: '50px'}}
-              >
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              <a 
-                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(job.hostedUrl)}&text=${encodeURIComponent(job.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline-secondary rounded-circle p-3"
-                style={{width: '50px', height: '50px'}}
-              >
-                <i className="fab fa-twitter"></i>
-              </a>
-            </div>
+               {/* Social Media Share Icons */}
+                                  <div className="d-flex gap-2 me-3">
+                                    <a 
+                                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(job.hostedUrl || window.location.href + '/jobs/' + job.id)}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                                      style={{width: '36px', height: '36px', fontSize: '14px'}}
+                                      title="Share on Facebook"
+                                    >
+                                      <i className="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a 
+                                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(job.hostedUrl || window.location.href + '/jobs/' + job.id)}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                                      style={{width: '36px', height: '36px', fontSize: '14px'}}
+                                      title="Share on LinkedIn"
+                                    >
+                                      <i className="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a 
+                                      href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(job.hostedUrl || window.location.href + '/jobs/' + job.id)}&text=${encodeURIComponent(job.title)}`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                                      style={{width: '36px', height: '36px', fontSize: '14px'}}
+                                      title="Share on Twitter"
+                                    >
+                                      <i className="fab fa-twitter"></i>
+                                    </a>
+                                  </div>
           </div>
         </div>
       </div>
