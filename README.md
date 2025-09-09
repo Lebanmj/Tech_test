@@ -41,7 +41,7 @@ A modern React.js application for displaying and managing job openings at Teknor
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repository-url>
+   git clone https://github.com/Lebanmj/Tech_test.git
    cd teknorix-job-board
    ```
 
